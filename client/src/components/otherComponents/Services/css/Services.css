@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --primary: #262d33;
+  --secondary: #c8b47e;
+  --white: #fff;
+  --dark: #000;
+  --gray: #999;
+}
+
+/* ------------------------------------SERVICES SECTION------------------------------ */
+/* ---------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------- */
+
+/* SERVICES Section Css */
+
+#Services {
+  margin-top: 100px;
+}
+
+#Services .heading {
+  text-align: center;
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+#Services .service-coloum {
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.2s;
+}
+
+#Services .service-coloum:hover {
+  transform: scale(1.05);
+}
+
+#Services .service-item i {
+  font-size: 40px;
+  color: var(--secondary);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+#Services .service-item h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: var(--dark);
+  font-weight: bold;
+  text-align: center;
+}
+
+#Services .service-item p {
+  font-size: 1rem;
+  color: #666;
+  text-align: center;
+}
+
+#Services .service-btn {
+  padding: 10px 30px;
+  color: var(--secondary);
+  font-size: medium;
+}
+
+#Services .service-btn:hover {
+  transition: all 0.3s ease-in-out;
+  color: var(--primary);
+}
+
+/* SERVICES Section Css */
