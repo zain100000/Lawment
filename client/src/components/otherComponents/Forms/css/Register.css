@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
 
 * {
   margin: 0;
@@ -18,66 +18,76 @@
   --gray: #999;
 }
 
-/* ------------------------------------REGISTER FORM SECTION------------------------- */
-/* ---------------------------------------------------------------------------------- */
-/* ---------------------------------------------------------------------------------- */
-/* ---------------------------------------------------------------------------------- */
-/* ---------------------------------------------------------------------------------- */
-
 /* REGISTER FORM Section Css */
 
-#Register .card {
-  border-radius: 0px;
-  border: none;
+#Register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
 }
 
-#Register .register-img {
+#Register .container {
+  max-width: 500px;
   width: 100%;
-  object-fit: contain;
+}
+
+#Register .card {
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--white);
+}
+
+#Register .heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+#Register .form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 #Register .inputField {
   border: 1px solid var(--primary);
   width: 100%;
-  padding: 8px 0px;
+  padding: 10px;
   color: var(--dark);
   background-color: var(--white);
   transition: border-color 0.3s, box-shadow 0.3s;
-  margin-bottom: 10px;
 }
 
 #Register .inputField:focus {
   border: 1px solid var(--secondary);
-  box-shadow: 0px 0px 2px var(--dark);
+  box-shadow: 0px 0px 5px var(--secondary);
 }
 
 #Register .registerBtn {
-  padding: 10px 20px;
+  padding: 12px;
+  border-radius: 5px;
   background-color: var(--primary);
   color: var(--white);
-  font-size: medium;
-  box-shadow: 0px 0px 2px 2px var(--secondary);
-  width: 50%;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
 }
 
 #Register .registerBtn:hover {
-  transition: all 0.3s ease-in-out;
-  color: var(--dark);
   background-color: var(--secondary);
+  color: var(--dark);
+}
+
+#Register .text-center {
+  text-align: center;
 }
 
 @media (max-width: 576px) {
   #Register .heading {
     font-size: 2rem;
   }
-
-  #Register .login-img {
-    margin-bottom: 20px;
-  }
-
-  #Register .loginBtn {
-    width: 100%;
-  }
 }
-
-/* REGISTER FORM Section Css */

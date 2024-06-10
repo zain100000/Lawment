@@ -78,7 +78,7 @@ const LawyerRegister = () => {
   };
 
   return (
-    <section id="Register">
+    <section id="lawyer-register">
       <div className="container">
         <div className="card">
           <div className="row text-center">
@@ -96,18 +96,13 @@ const LawyerRegister = () => {
           </div>
 
           <div className="row mt-5">
-            <div className="col-sm-12 col-md-12 col-lg-6 mb-5">
-              <img
-                src={RegisterImage}
-                alt="Register Image"
-                className="register-img"
-              />
-            </div>
-
-            <div className="col-sm-12 col-md-12 col-lg-6">
+            <div className="col-sm-12 col-md-12 col-lg-12">
               <form onSubmit={handleLawyerRegister}>
                 <div className="image-upload-container mb-3">
-                  <div className="input-group">
+                  <div
+                    className="input-group"
+                    style={{ display: "flex", justifyContent: "center" }}
+                  >
                     <input
                       type="file"
                       className="form-control"
@@ -145,7 +140,7 @@ const LawyerRegister = () => {
                 </div>
 
                 <div className="row">
-                  <div className="col-sm-12 col-md-6 col-lg-6">
+                  <div className="col-sm-12 col-md-12 col-lg-12">
                     <input
                       className="inputField px-3"
                       placeholder="Name"
@@ -154,9 +149,13 @@ const LawyerRegister = () => {
                       onChange={(e) => {
                         setName(e.target.value);
                       }}
+                      autoComplete="off"
                     />
                   </div>
-                  <div className="col-sm-12 col-md-6 col-lg-6 ">
+                </div>
+
+                <div className="row">
+                  <div className="col-sm-12 col-md-12 col-lg-12">
                     <input
                       className="inputField px-3"
                       placeholder="Email"
@@ -165,12 +164,13 @@ const LawyerRegister = () => {
                       onChange={(e) => {
                         setEmail(e.target.value);
                       }}
+                      autoComplete="off"
                     />
                   </div>
                 </div>
 
                 <div className="row">
-                  <div className="col-sm-12 col-md-6 col-lg-6">
+                  <div className="col-sm-12 col-md-12 col-lg-12">
                     <input
                       className="inputField px-3"
                       placeholder="Password"
@@ -179,9 +179,13 @@ const LawyerRegister = () => {
                       onChange={(e) => {
                         setPassword(e.target.value);
                       }}
+                      autoComplete="off"
                     />
                   </div>
-                  <div className="col-sm-12 col-md-6 col-lg-6">
+                </div>
+
+                <div className="row">
+                  <div className="col-sm-12 col-md-12 col-lg-12">
                     <input
                       className="inputField px-3"
                       placeholder="Phone"
@@ -190,23 +194,28 @@ const LawyerRegister = () => {
                       onChange={(e) => {
                         setPhone(e.target.value);
                       }}
+                      autoComplete="off"
                     />
                   </div>
                 </div>
 
                 <div className="row">
-                  <div className="col-sm-12 col-md-6 col-lg-6">
+                  <div className="col-sm-12 col-md-12 col-lg-12">
                     <input
                       className="inputField px-3"
                       placeholder="Designation"
-                      name="client_designation"
+                      name="lawyer_designation"
                       value={designation}
                       onChange={(e) => {
                         setDesignation(e.target.value);
                       }}
+                      autoComplete="off"
                     />
                   </div>
-                  <div className="col-sm-12 col-md-6 col-lg-6">
+                </div>
+
+                <div className="row">
+                  <div className="col-sm-12 col-md-12 col-lg-12">
                     <div className="d-flex flex-row">
                       <select
                         className="form-control px-3"
@@ -270,34 +279,19 @@ const LawyerRegister = () => {
               </form>
 
               <div className="row mt-3 px-2">
-                <div className="col-6">
-                  <p style={{ color: "#393f81" }}>Already have an account?</p>
-                </div>
-                <div className="col-6">
-                  <Link to="/lawyer-login">
-                    <h6
-                      style={{
-                        color: "#000",
-                      }}
-                    >
-                      Login Here
-                    </h6>
-                  </Link>
+                <div className="col-sm-12 col-md-12 col-lg-12 text-center">
+                  <p>
+                    Already have an account?{" "}
+                    <Link to="/lawyer-login">Login Here</Link>
+                  </p>
                 </div>
               </div>
 
               <div className="row">
-                <div className="col-12">
-                  <Link to="/client-register">
-                    <h6
-                      style={{
-                        paddingLeft: 10,
-                        color: "#000",
-                      }}
-                    >
-                      Register as a Client
-                    </h6>
-                  </Link>
+                <div className="col-sm-12 col-md-12 col-lg-12 text-center">
+                  <p>
+                    Register as a <Link to="/client-register">Client</Link>
+                  </p>
                 </div>
               </div>
             </div>

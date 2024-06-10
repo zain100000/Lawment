@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
 
 * {
   margin: 0;
@@ -18,78 +18,92 @@
   --gray: #999;
 }
 
-/* ------------------------------------LAWYER REGISTER FORM SECTION------------------ */
-/* ---------------------------------------------------------------------------------- */
-/* ---------------------------------------------------------------------------------- */
-/* ---------------------------------------------------------------------------------- */
-/* ---------------------------------------------------------------------------------- */
+/* REGISTER FORM Section Css */
 
-/* LAWYER REGISTER FORM Section Css */
-
-#Register .card {
-  border-radius: 0px;
-  border: none;
+#lawyer-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
 }
 
-#Register .register-img {
+#lawyer-register .container {
+  max-width: 500px;
   width: 100%;
-  height: 80vh;
-  object-fit: contain;
 }
 
-#Register .inputField {
+#lawyer-register .card {
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--white);
+}
+
+#lawyer-register .heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+#lawyer-register .form {
+  display: flex;
+  flex-direction: column;
+}
+
+#lawyer-register .inputField {
   border: 1px solid var(--primary);
   width: 100%;
-  padding: 8px 0px;
+  padding: 10px;
   color: var(--dark);
   background-color: var(--white);
   transition: border-color 0.3s, box-shadow 0.3s;
-  margin-bottom: 10px;
+  margin: 5px;
+  margin-bottom: 20px;
 }
 
-#Register .inputField:focus {
+#lawyer-register .inputField:focus {
   border: 1px solid var(--secondary);
-  box-shadow: 0px 0px 2px var(--dark);
+  box-shadow: 0px 0px 5px var(--secondary);
 }
 
-#Register .registerBtn {
-  padding: 10px 20px;
+#lawyer-register .form-control {
+  border: 1px solid var(--primary);
+  color: var(--dark);
+  background-color: var(--white);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  border-radius: 0px;
+  margin-left: 5px;
+  margin-bottom: 20px;
+}
+
+#lawyer-register .form-control:focus {
+  border: 1px solid var(--secondary);
+  box-shadow: 0px 0px 5px var(--secondary);
+}
+
+#lawyer-register .registerBtn {
+  padding: 12px;
+  border-radius: 5px;
   background-color: var(--primary);
   color: var(--white);
-  font-size: medium;
-  box-shadow: 0px 0px 2px 2px var(--secondary);
-  width: 50%;
-}
-
-#Register .registerBtn:hover {
-  transition: all 0.3s ease-in-out;
-  color: var(--dark);
-  background-color: var(--secondary);
-}
-
-#Register .form-control {
-  border: 1px solid var(--primary);
+  font-size: 1rem;
+  font-weight: bold;
   width: 100%;
-  padding: 8px 0px;
+  transition: all 0.3s ease-in-out;
+}
+
+#lawyer-register .registerBtn:hover {
+  background-color: var(--secondary);
   color: var(--dark);
-  background-color: var(--white);
-  transition: border-color 0.3s, box-shadow 0.3s;
-  margin-bottom: 10px;
-  border-radius: 0px;
+}
+
+#lawyer-register .text-center {
+  text-align: center;
 }
 
 @media (max-width: 576px) {
-  #Register .heading {
+  #lawyer-register .heading {
     font-size: 2rem;
   }
-
-  #Register .login-img {
-    margin-bottom: 20px;
-  }
-
-  #Register .loginBtn {
-    width: 100%;
-  }
 }
-
-/* LAWYER REGISTER FORM Section Css */
