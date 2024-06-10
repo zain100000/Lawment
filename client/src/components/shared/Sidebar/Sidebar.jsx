@@ -25,10 +25,14 @@ const Sidebar = ({ isOpen, toggleSidebar, isBooking }) => {
   );
   const navigate = useNavigate();
 
+  const API = import.meta.env.VITE_SERVER_URI;
+
   useEffect(() => {
-    getAppointments();
-    getProfileData();
-  }, []);
+    if (isOpen) {
+      getAppointments();
+      getProfileData();
+    }
+  }, [isOpen]);
 
   const handleBookAppointment = async (e) => {
     e.preventDefault();
@@ -36,7 +40,7 @@ const Sidebar = ({ isOpen, toggleSidebar, isBooking }) => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5000/api/appointments/addAppointment",
+        `${API}/api/appointments/addAppointment`,
         {
           department,
           lawyerName: lawyer,
@@ -70,7 +74,7 @@ const Sidebar = ({ isOpen, toggleSidebar, isBooking }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:5000/api/appointments/getAppointments",
+        `${API}/api/appointments/getAppointments`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -87,8 +91,8 @@ const Sidebar = ({ isOpen, toggleSidebar, isBooking }) => {
     try {
       const token = localStorage.getItem("token");
       const apiUrl = isLawyer
-        ? "http://localhost:5000/api/lawyers/getLawyers"
-        : "http://localhost:5000/api/clients/getClients";
+        ? `${API}/api/lawyers/getLawyers`
+        : `${API}/api/clients/getClients`;
       const response = await axios.get(apiUrl, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -113,7 +117,7 @@ const Sidebar = ({ isOpen, toggleSidebar, isBooking }) => {
       const token = localStorage.getItem("token");
       const timestamp = new Date().getTime();
       const response = await axios.get(
-        `http://localhost:5000/api/appointments/getAppointments?timestamp=${timestamp}`,
+        `${API}/api/appointments/getAppointments?timestamp=${timestamp}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -135,8 +139,8 @@ const Sidebar = ({ isOpen, toggleSidebar, isBooking }) => {
     try {
       const token = localStorage.getItem("token");
       const apiUrl = isLawyer
-        ? "http://localhost:5000/api/lawyers/getLawyers"
-        : "http://localhost:5000/api/clients/getClients";
+        ? `${API}/api/lawyers/getLawyers`
+        : `${API}/api/clients/getClients`;
       const response = await axios.get(apiUrl, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -164,14 +168,11 @@ const Sidebar = ({ isOpen, toggleSidebar, isBooking }) => {
     if (confirmed) {
       try {
         const token = localStorage.getItem("token");
-        await axios.delete(
-          `http://localhost:5000/api/appointments/removeAppointment/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        await axios.delete(`${API}/api/appointments/removeAppointment/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setAppointments((prevData) =>
           prevData.filter((item) => item._id !== id)
         );
@@ -197,8 +198,8 @@ const Sidebar = ({ isOpen, toggleSidebar, isBooking }) => {
       try {
         const token = localStorage.getItem("token");
         const apiUrl = isLawyer
-          ? `http://localhost:5000/api/lawyers/removeLawyer/${_id}`
-          : `http://localhost:5000/api/clients/removeClient/${_id}`;
+          ? `${API}/api/lawyers/removeLawyer/${_id}`
+          : `${API}/api/clients/removeClient/${_id}`;
         await axios.delete(apiUrl, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -336,7 +337,15 @@ const Sidebar = ({ isOpen, toggleSidebar, isBooking }) => {
             </div>
           ) : (
             <div className="profile-section">
-              <div style={{display:'flex', justifyContent:'space-around', alignItems:'center'}}>                
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              >
+                <div>
                   <img
                     src={
                       isLawyer
@@ -346,10 +355,13 @@ const Sidebar = ({ isOpen, toggleSidebar, isBooking }) => {
                     alt="Profile"
                     className="profile-img"
                   />
-                <i
-                  className="fas fa-sync-alt text-white mt-1"
-                  onClick={handleProfileRefresh}
-                ></i>
+                </div>
+                <div>
+                  <i
+                    className="fas fa-sync-alt text-white mt-1"
+                    onClick={handleProfileRefresh}
+                  ></i>
+                </div>
               </div>
 
               <h3>

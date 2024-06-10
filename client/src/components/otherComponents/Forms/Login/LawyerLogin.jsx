@@ -12,6 +12,8 @@ const LawyerLogin = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const API = import.meta.env.VITE_SERVER_URI;
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -23,7 +25,7 @@ const LawyerLogin = () => {
         password,
       };
 
-      const SigninApiUrl = "http://localhost:5000/api/lawyers/lawyer_login";
+      const SigninApiUrl = `${API}/api/lawyers/lawyer_login`;
       const response = await axios.post(SigninApiUrl, signinData, {
         headers: {
           "Content-Type": "application/json",
@@ -76,7 +78,7 @@ const LawyerLogin = () => {
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
-              autoComplete="off"
+              autoComplete="email"
             />
             <input
               className="inputField"
@@ -87,7 +89,7 @@ const LawyerLogin = () => {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
-              autoComplete="off"
+              autoComplete="password"
             />
             <Link className="forgotPasswordLink">Forgot Password?</Link>
             <button className="loginBtn" type="submit">

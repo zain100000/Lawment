@@ -21,6 +21,8 @@ const Register = () => {
     setImage(file);
   };
 
+  const API = import.meta.env.VITE_SERVER_URI;
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -40,7 +42,7 @@ const Register = () => {
       formData.append("client_phone", phone);
       formData.append("client_profile_image", image);
 
-      const SignupApiUrl = "http://localhost:5000/api/clients/client_signup";
+      const SignupApiUrl = `${API}/api/clients/client_signup`;
       const response = await axios.post(SignupApiUrl, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -128,8 +130,9 @@ const Register = () => {
               onChange={(e) => {
                 setName(e.target.value);
               }}
-              autoComplete="off"
+              autoComplete="name"
             />
+
             <input
               className="inputField px-2"
               placeholder="Email"
@@ -138,7 +141,7 @@ const Register = () => {
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
-              autoComplete="off"
+              autoComplete="email"
             />
             <input
               className="inputField px-2"
@@ -149,7 +152,7 @@ const Register = () => {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
-              autoComplete="off"
+              autoComplete="password"
             />
             <input
               className="inputField px-2"
@@ -159,7 +162,7 @@ const Register = () => {
               onChange={(e) => {
                 setPhone(e.target.value);
               }}
-              autoComplete="off"
+              autoComplete="number"
             />
 
             <button className="registerBtn" type="submit">

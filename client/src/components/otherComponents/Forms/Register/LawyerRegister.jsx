@@ -25,6 +25,8 @@ const LawyerRegister = () => {
     setImage(file);
   };
 
+  const API = import.meta.env.VITE_SERVER_URI;
+
   const handleLawyerRegister = async (e) => {
     e.preventDefault();
 
@@ -46,7 +48,7 @@ const LawyerRegister = () => {
       formData.append("lawyer_phone", phone);
       formData.append("lawyer_profile_image", image);
 
-      const SignupApiUrl = "http://localhost:5000/api/lawyers/lawyer_signup";
+      const SignupApiUrl = `${API}/api/lawyers/lawyer_signup`;
       const response = await axios.post(SignupApiUrl, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -149,7 +151,7 @@ const LawyerRegister = () => {
                       onChange={(e) => {
                         setName(e.target.value);
                       }}
-                      autoComplete="off"
+                      autoComplete="name"
                     />
                   </div>
                 </div>
@@ -164,7 +166,7 @@ const LawyerRegister = () => {
                       onChange={(e) => {
                         setEmail(e.target.value);
                       }}
-                      autoComplete="off"
+                      autoComplete="email"
                     />
                   </div>
                 </div>
@@ -179,7 +181,7 @@ const LawyerRegister = () => {
                       onChange={(e) => {
                         setPassword(e.target.value);
                       }}
-                      autoComplete="off"
+                      autoComplete="password"
                     />
                   </div>
                 </div>
@@ -194,7 +196,7 @@ const LawyerRegister = () => {
                       onChange={(e) => {
                         setPhone(e.target.value);
                       }}
-                      autoComplete="off"
+                      autoComplete="phone"
                     />
                   </div>
                 </div>
@@ -209,7 +211,7 @@ const LawyerRegister = () => {
                       onChange={(e) => {
                         setDesignation(e.target.value);
                       }}
-                      autoComplete="off"
+                      autoComplete="designation"
                     />
                   </div>
                 </div>

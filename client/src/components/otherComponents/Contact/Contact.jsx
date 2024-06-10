@@ -22,6 +22,8 @@ const Contact = () => {
     };
   }, []);
 
+  const API = import.meta.env.VITE_SERVER_URI;
+  
   const handleContact = async (e) => {
     e.preventDefault();
 
@@ -35,8 +37,7 @@ const Contact = () => {
         message,
       };
 
-      const ContactApiUrl =
-        "http://localhost:5000/api/contactForms/addContactForm";
+      const ContactApiUrl = `${API}/api/contactForms/addContactForm`;
       const response = await axios.post(ContactApiUrl, contactData, {
         headers: {
           "Content-Type": "application/json",
