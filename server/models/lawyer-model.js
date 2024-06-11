@@ -13,6 +13,7 @@ const lawyerSchema = new mongoose.Schema({
       ref: "Appointment",
     },
   ],
+
   lawyer_department: {
     type: String,
     required: true,

@@ -174,6 +174,7 @@ const LawyerRegister = () => {
                 <div className="row">
                   <div className="col-sm-12 col-md-12 col-lg-12">
                     <input
+                      type="password"
                       className="inputField px-3"
                       placeholder="Password"
                       name="password"

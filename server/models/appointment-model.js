@@ -27,7 +27,7 @@ const appointmentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Client",
     required: true,
-  }, 
+  },
 });
 
 const Appointment = mongoose.model("Appointment", appointmentSchema);

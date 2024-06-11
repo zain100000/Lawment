@@ -78,10 +78,10 @@ const addAppointment = async (req, res) => {
 const getAppointments = async (req, res) => {
   try {
     const appointments = await Appointment.find({})
-      .populate("client", "client_username")
+      .populate("client", "client_username client_phone")
       .populate({
         path: "lawyerName",
-        select: "lawyer_username",
+        select: "lawyer_username lawyer_phone",
         model: "Lawyer",
       });
     res.json({ Appointments: appointments });
@@ -98,7 +98,7 @@ const getAppointmentById = async (req, res) => {
       .populate("client", "client_username")
       .populate({
         path: "lawyerName",
-        select: "lawyer_name", // Adjust this according to your Lawyer model
+        select: "lawyer_username", // Adjust this according to your Lawyer model
         model: "Lawyer",
       });
     if (!appointment) {

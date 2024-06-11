@@ -173,9 +173,39 @@ const Sidebar = ({ isOpen, toggleSidebar, isBooking }) => {
             Authorization: `Bearer ${token}`,
           },
         });
+
+        // Update the appointments state by removing the deleted appointment
         setAppointments((prevData) =>
           prevData.filter((item) => item._id !== id)
         );
+
+        // If the user is a client, remove the appointment from the client's appointments list
+        if (!isLawyer) {
+          setProfileData((prevProfileData) => ({
+            ...prevProfileData,
+            appointments: prevProfileData.appointments.filter(
+              (appointment) => appointment._id !== id
+            ),
+          }));
+        } else {
+          // If the user is a lawyer, update only the lawyer's list of appointments
+          setLawyers((prevLawyers) =>
+            prevLawyers.map((lawyer) => {
+              // Check if the appointment exists in this lawyer's appointments
+              const index = lawyer.appointments.findIndex(
+                (appointment) => appointment._id === id
+              );
+              // If found, remove it
+              if (index !== -1) {
+                const updatedAppointments = [...lawyer.appointments];
+                updatedAppointments.splice(index, 1);
+                return { ...lawyer, appointments: updatedAppointments };
+              }
+              return lawyer;
+            })
+          );
+        }
+
         toast.success("Appointment Deleted Successfully");
       } catch (error) {
         console.error("Error deleting Appointment:", error);
@@ -450,22 +480,50 @@ const Sidebar = ({ isOpen, toggleSidebar, isBooking }) => {
               <div
                 style={{ display: "flex", flexDirection: "column", gap: 10 }}
               >
-                <p>
-                  <strong>Department:</strong> {selectedAppointment.department}
-                </p>
-                {console.log("Lawyer Names:", selectedAppointment.lawyerName)}
-                <p>
-                  <strong>Lawyer Name:</strong>{" "}
-                  {selectedAppointment.lawyerName.map((lawyer, index) => (
-                    <span key={index}>
-                      {typeof lawyer === "string"
-                        ? lawyer
-                        : lawyer.lawyer_username}
-                      {index !== selectedAppointment.lawyerName.length - 1 &&
-                        ", "}
-                    </span>
-                  ))}
-                </p>
+                {isLawyer ? (
+                  <>
+                    <p>
+                      <strong>Client Name:</strong>{" "}
+                      {selectedAppointment.client.client_username}
+                    </p>
+                    <p>
+                      <strong>Client Phone:</strong>{" "}
+                      {selectedAppointment.client.client_phone}
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      <strong>Department:</strong>{" "}
+                      {selectedAppointment.department}
+                    </p>
+                    <p>
+                      <strong>Lawyer Name:</strong>{" "}
+                      {selectedAppointment.lawyerName.map((lawyer, index) => (
+                        <span key={index}>
+                          {typeof lawyer === "string"
+                            ? lawyer
+                            : lawyer.lawyer_username}
+                          {index !==
+                            selectedAppointment.lawyerName.length - 1 && ", "}
+                        </span>
+                      ))}
+                    </p>
+
+                    <p>
+                      <strong>Lawyer Phone:</strong>{" "}
+                      {selectedAppointment.lawyerName.map((lawyer, index) => (
+                        <span key={index}>
+                          {typeof lawyer === "string"
+                            ? lawyer
+                            : lawyer.lawyer_phone}
+                          {index !==
+                            selectedAppointment.lawyerName.length - 1 && ", "}
+                        </span>
+                      ))}
+                    </p>
+                  </>
+                )}
                 <p>
                   <strong>Date:</strong>{" "}
                   {new Date(
