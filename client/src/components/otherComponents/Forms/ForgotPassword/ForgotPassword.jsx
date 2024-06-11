@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Loader from "../../../shared/LoaderComponent/Loader";
 import { useNavigate } from "react-router-dom";
-import "../css/LawyerLogin.css";
+import "../css/ForgotPassword.css";
 
-const LawyerLogin = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,30 +13,30 @@ const LawyerLogin = () => {
 
   const API = import.meta.env.VITE_SERVER_URI;
 
-  const handleLogin = async (e) => {
+  const handleResetPassword = async (e) => {
     e.preventDefault();
 
     try {
       setLoading(true);
 
-      const signinData = {
-        lawyer_email: email,
-        password,
+      const resetPasswordData = {
+        client_email: email,
+        newPassword: password,
       };
 
-      const SigninApiUrl = `${API}/api/lawyers/lawyer_login`;
-      const response = await axios.post(SigninApiUrl, signinData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const ResetPasswordApiUrl = `${API}/api/clients/reset-password`;
+      const response = await axios.post(
+        ResetPasswordApiUrl,
+        resetPasswordData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.status >= 200 && response.status < 300) {
-        toast.success(response.data.message);
-        const { token } = response.data;
-        localStorage.setItem("token", token);
-        localStorage.setItem("isLawyer", "true");
-        window.dispatchEvent(new Event("storage"));
+        toast.success("Password Is Reset Successfully");
         navigate("/");
       } else {
         toast.error(response.data.extraDetails);
@@ -45,8 +44,8 @@ const LawyerLogin = () => {
     } catch (err) {
       if (err.response) {
         const errorMessage = err.response.data.message;
-        if (errorMessage.includes("Invalid Credentials")) {
-          toast.error("Invalid Credentials");
+        if (errorMessage.includes("Invalid Email")) {
+          toast.error("Invalid Email");
         } else {
           console.log(err);
           toast.error(err.response.data.extraDetails);
@@ -62,18 +61,18 @@ const LawyerLogin = () => {
   };
 
   return (
-    <section id="lawyer-login">
+    <section id="reset-password">
       <div className="container">
         <div className="card">
           <div className="text-center">
-            <h2 className="heading">Lawyer Signin</h2>
-            <p>Please Fill In The Following Form To Login.</p>
+            <h2 className="heading">Password Reset</h2>
+            <p>Please Fill In The Following Form To Reset Your Password.</p>
           </div>
-          <form onSubmit={handleLogin} className="form">
+          <form onSubmit={handleResetPassword} className="form">
             <input
-              className="inputField"
+              className="inputField px-2"
               placeholder="Email"
-              name="lawyer_email"
+              name="client_email"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -81,7 +80,7 @@ const LawyerLogin = () => {
               autoComplete="email"
             />
             <input
-              className="inputField"
+              className="inputField px-2"
               type="password"
               placeholder="Password"
               name="password"
@@ -91,26 +90,15 @@ const LawyerLogin = () => {
               }}
               autoComplete="password"
             />
-            <Link className="forgotPasswordLink" to={"/lawyer-reset-password"}>
-              Forgot Password?
-            </Link>
-            <button className="loginBtn" type="submit">
-              {loading ? <Loader /> : <span>Login</span>}
+
+            <button className="resetBtn" type="submit">
+              {loading ? <Loader /> : <span>Reset Password</span>}
             </button>
           </form>
-          <div className="text-center mt-3">
-            <p>
-              Didn't have an account?{" "}
-              <Link to="/lawyer-register">Register Here</Link>
-            </p>
-            <p>
-              Login as <Link to="/client-login">Client</Link>
-            </p>
-          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default LawyerLogin;
+export default ForgotPassword;

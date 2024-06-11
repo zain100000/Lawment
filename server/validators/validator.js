@@ -14,6 +14,20 @@ const clientLoginSchema = z.object({
     .max(255, { message: "Password must be at most 255 characters" }),
 });
 
+const clientResetPasswordSchema = z.object({
+  client_email: z
+    .string({ required_error: "Email is required" })
+    .trim()
+    .email({ message: "Invalid email address" })
+    .min(6, { message: "Email must be at least 3 characters" })
+    .max(255, { message: "Email must be at most 255 characters" }),
+  newPassword: z
+    .string({ required_error: "Password is required" })
+    .trim()
+    .min(6, { message: "Password must be at least 6 characters" })
+    .max(255, { message: "Password must be at most 255 characters" }),
+});
+
 const clientSignupSchema = z.object({
   client_username: z
     .string({ required_error: "Name is required" })
@@ -83,6 +97,20 @@ const lawyerSignupSchema = z.object({
     .max(255, { message: "Password must be at most 255 characters" }),
 });
 
+const lawyerResetPasswordSchema = z.object({
+  lawyer_email: z
+    .string({ required_error: "Email is required" })
+    .trim()
+    .email({ message: "Invalid email address" })
+    .min(6, { message: "Email must be at least 3 characters" })
+    .max(255, { message: "Email must be at most 255 characters" }),
+  newPassword: z
+    .string({ required_error: "Password is required" })
+    .trim()
+    .min(6, { message: "Password must be at least 6 characters" })
+    .max(255, { message: "Password must be at most 255 characters" }),
+});
+
 const contactSchema = z.object({
   name: z
     .string({ required_error: "Name is required" })
@@ -116,7 +144,9 @@ const contactSchema = z.object({
 module.exports = {
   clientLoginSchema,
   clientSignupSchema,
+  clientResetPasswordSchema,
   lawyerLoginSchema,
   lawyerSignupSchema,
+  lawyerResetPasswordSchema,
   contactSchema,
 };

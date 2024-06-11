@@ -4,6 +4,7 @@ const authMiddleware = require("../middleware/auth/authMiddleware");
 const {
   clientSignupSchema,
   clientLoginSchema,
+  clientResetPasswordSchema,
 } = require("../validators/validator");
 const validate = require("../middleware/validateMiddleware");
 const clientController = require("../controllers/client-controller");
@@ -19,7 +20,7 @@ router.post(
 router.post(
   "/client_login",
   validate(clientLoginSchema),
-  clientController.login,
+  clientController.login
 );
 
 router.get("/getClients", authMiddleware, clientController.getClients);
@@ -30,7 +31,11 @@ router.get(
   clientController.getClientsById
 );
 
-router.post("/reset-password/:token", clientController.resetPassword);
+router.post(
+  "/reset-password",
+  validate(clientResetPasswordSchema),
+  clientController.resetPassword
+);
 
 router.delete(
   "/removeClient/:id",

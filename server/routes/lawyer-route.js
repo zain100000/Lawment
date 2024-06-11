@@ -5,6 +5,7 @@ const lawyerController = require("../controllers/lawyer-controller");
 const {
   lawyerSignupSchema,
   lawyerLoginSchema,
+  lawyerResetPasswordSchema,
 } = require("../validators/validator");
 const validate = require("../middleware/validateMiddleware");
 const lawyerProfileImageUpload = require("../middleware/upload-lawyer-profile-image");
@@ -30,7 +31,11 @@ router.get(
   lawyerController.getLawyersById
 );
 
-router.post("/reset-password/:token", lawyerController.resetPassword);
+router.post(
+  "/lawyer-reset-password",
+  validate(lawyerResetPasswordSchema),
+  lawyerController.resetPassword
+);
 
 router.delete(
   "/removeLawyer/:id",

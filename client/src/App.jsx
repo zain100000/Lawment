@@ -11,6 +11,8 @@ import Error from "./components/shared/ErrorComponent/Error";
 import Breadcrumb from "./components/shared/BreadCrumb/BreadCrumb";
 import LawyerRegister from "./components/otherComponents/Forms/Register/LawyerRegister";
 import LawyerLogin from "./components/otherComponents/Forms/Login/LawyerLogin";
+import ForgotPassword from "./components/otherComponents/Forms/ForgotPassword/ForgotPassword";
+import LawyerForgotPassword from "./components/otherComponents/Forms/ForgotPassword/LawyerForgotPassword";
 
 const App = () => {
   return (
@@ -62,6 +64,15 @@ const App = () => {
         />
 
         <Route
+          path="/reset-password"
+          element={
+            <Breadcrumb>
+              <ForgotPassword />
+            </Breadcrumb>
+          }
+        />
+
+        <Route
           path="/lawyer-register"
           element={
             <Breadcrumb>
@@ -75,6 +86,15 @@ const App = () => {
           element={
             <Breadcrumb>
               <LawyerLogin />
+            </Breadcrumb>
+          }
+        />
+
+        <Route
+          path="/lawyer-reset-password"
+          element={
+            <Breadcrumb>
+              <LawyerForgotPassword />
             </Breadcrumb>
           }
         />

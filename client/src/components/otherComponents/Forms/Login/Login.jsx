@@ -91,7 +91,9 @@ const Login = () => {
               }}
               autoComplete="password"
             />
-            <Link className="forgotPasswordLink">Forgot Password?</Link>
+            <Link className="forgotPasswordLink" to={"/reset-password"}>
+              Forgot Password?
+            </Link>
             <button className="loginBtn" type="submit">
               {loading ? <Loader /> : <span>Login</span>}
             </button>
@@ -102,7 +104,7 @@ const Login = () => {
               <Link to="/client-register">Register Here</Link>
             </p>
             <p>
-              Register as a <Link to="/lawyer-register">Lawyer</Link>
+              Login as a <Link to="/lawyer-login">Lawyer</Link>
             </p>
           </div>
         </div>
