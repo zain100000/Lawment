@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --primary: #212529;
+  --secondary: #c8b47e;
+  --white: #fff;
+  --dark: #000;
+  --gray: #999;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*********************************FOOTER SECTION***********************************/
+/**********************************************************************************/
+/**********************************************************************************/
+/**********************************************************************************/
+/**********************************************************************************/
+/**********************************************************************************/
+
+/* Footer Css */
+
+#Footer {
+  margin-top: 50px;
+}
+
+#Footer .footerHeading {
+  font-size: 1.4rem;
+}
+
+#Footer .footerDescription {
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: justify;
+}
+
+#Footer ul li {
+  padding: 5px 0px;
+  list-style: disc;
+}
+
+#Footer ul li a {
+  text-decoration: none;
+  color: var(--dark);
+}
+
+#Footer ul li a:hover {
+  transition: all 0.3s ease-in-out;
+  color: var(--primary);
+}
+
+/* Footer Css */

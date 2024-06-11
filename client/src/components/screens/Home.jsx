@@ -50,12 +50,7 @@ const Home = () => {
       <section id="Services">
         <Services />
       </section>
-      {/* Services Section */}
-
-      <hr
-        className="seperator"
-        style={{ color: "green", fontWeight: "bold" }}
-      />
+      {/* Services Section */}      
     </section>
   );
 };

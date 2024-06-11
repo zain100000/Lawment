@@ -13,6 +13,10 @@ import LawyerRegister from "./components/otherComponents/Forms/Register/LawyerRe
 import LawyerLogin from "./components/otherComponents/Forms/Login/LawyerLogin";
 import ForgotPassword from "./components/otherComponents/Forms/ForgotPassword/ForgotPassword";
 import LawyerForgotPassword from "./components/otherComponents/Forms/ForgotPassword/LawyerForgotPassword";
+import Departments from "./components/otherComponents/Departments/Departments";
+import TermsandConditions from "./components/otherComponents/TermsandConditions/TermsandConditions";
+import Footer from "./components/navigation/Footer";
+import PrivacyPolicy from "./components/otherComponents/PrivacyPolicy/PrivacyPolicy";
 
 const App = () => {
   return (
@@ -28,6 +32,7 @@ const App = () => {
             </Breadcrumb>
           }
         />
+
         <Route
           path="/services"
           element={
@@ -36,6 +41,34 @@ const App = () => {
             </Breadcrumb>
           }
         />
+
+        <Route
+          path="/departments"
+          element={
+            <Breadcrumb>
+              <Departments />
+            </Breadcrumb>
+          }
+        />
+
+        <Route
+          path="/terms-and-conditions"
+          element={
+            <Breadcrumb>
+              <TermsandConditions />
+            </Breadcrumb>
+          }
+        />
+
+        <Route
+          path="/privacy-policy"
+          element={
+            <Breadcrumb>
+              <PrivacyPolicy />
+            </Breadcrumb>
+          }
+        />
+
         <Route
           path="/contact-us"
           element={
@@ -100,6 +133,7 @@ const App = () => {
         />
         <Route path="*" element={<Error />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };

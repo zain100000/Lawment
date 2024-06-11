@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AboutImage from "../../../assets/about/about-img.jpg";
 import MissionImage from "../../../assets/about/mission-img.jpg";
 import VisionImage from "../../../assets/about/vision-img.jpg";
 import "./css/About.css";
 
 const About = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    return () => {
+      window.scrollTo(0, 0);
+    };
+  }, []);
   return (
     <section id="About">
       <div className="container">
