@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
 import "./css/Carousel.css";
 
 const Carousel = ({ images, headings, descriptions }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -12,6 +15,24 @@ const Carousel = ({ images, headings, descriptions }) => {
 
     return () => clearInterval(intervalId);
   }, [currentIndex, images.length]);
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(
+        `https://lawment-deployment-server.onrender.com/api/lawyers/getLawyers?name=${searchQuery}`
+      );
+      if (response.data.length > 0) {
+        setSearchResults(response.data.Lawyers);
+        setErrorMessage("");
+      } else {
+        setSearchResults([]);
+        setErrorMessage("No Lawyer Found");
+      }
+    } catch (error) {
+      setSearchResults([]);
+      setErrorMessage("An error occurred while fetching the data");
+    }
+  };
 
   return (
     <section id="Carousel">
@@ -39,8 +60,22 @@ const Carousel = ({ images, headings, descriptions }) => {
                   <input
                     className="form-control"
                     placeholder="Search The Lawyers"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                   />
+                  <button onClick={handleSearch}>Search</button>
                 </div>
+              </div>
+              <div className="search-results">
+                {searchResults.length > 0
+                  ? searchResults.map((lawyer) => (
+                      <div key={lawyer.id} className="lawyer-result">
+                        <h3>{lawyer.name}</h3>
+                        <p>{lawyer.specialization}</p>
+                        {/* You can add more details as needed */}
+                      </div>
+                    ))
+                  : errorMessage && <p>{errorMessage}</p>}
               </div>
             </div>
           </div>
