@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./css/Carousel.css";
+import { toast } from "react-toastify";
 
 const Carousel = ({ images, headings, descriptions }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,10 +24,9 @@ const Carousel = ({ images, headings, descriptions }) => {
       );
       if (response.data.length > 0) {
         setSearchResults(response.data.Lawyers);
-        setErrorMessage("");
       } else {
         setSearchResults([]);
-        setErrorMessage("No Lawyer Found");
+        toast.error("No Lawyer Found");
       }
     } catch (error) {
       setSearchResults([]);
