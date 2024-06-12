@@ -16,6 +16,8 @@ const Header = () => {
   const [isBooking, setIsBooking] = useState(false);
   const [isLawyer, setIsLawyer] = useState(false);
 
+  const API = import.meta.env.VITE_SERVER_URI;
+
   useEffect(() => {
     const checkAuth = () => {
       setAuthenticated(isAuthenticated());
@@ -34,8 +36,8 @@ const Header = () => {
         try {
           const token = localStorage.getItem("token");
           const apiUrl = isLawyer
-            ? "http://localhost:5000/api/lawyers/getLawyers"
-            : "http://localhost:5000/api/clients/getClients";
+            ? `${API}/api/lawyers/getLawyers`
+            : `${API}/api/clients/getClients`;
           const response = await axios.get(apiUrl, {
             headers: {
               Authorization: `Bearer ${token}`,
