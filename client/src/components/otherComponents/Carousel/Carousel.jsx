@@ -29,18 +29,7 @@ const Carousel = ({ images, headings, descriptions }) => {
             />
             <div className="carousel-content">
               <h2 className="flip-in-out heading">{headings[index]}</h2>
-              <h2 className="flip-in-out description">{descriptions[index]}</h2>
-              <div className="searchContainer">
-                <div className="input-group">
-                  <span className="input-group-text">
-                    <i className="fas fa-search"></i>
-                  </span>
-                  <input
-                    className="form-control"
-                    placeholder="Search The Lawyers"
-                  />
-                </div>
-              </div>
+              <h2 className="flip-in-out description">{descriptions[index]}</h2>            
             </div>
           </div>
         ))}
